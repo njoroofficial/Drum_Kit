@@ -1,16 +1,10 @@
 // get the total number of buttons
 var numOfButtons = document.querySelectorAll(".drum").length;
 
-// loop through every button adding event listener
-for(var i = 0; i < numOfButtons; i++){
-    // adding event listener
+// function that will switch through varoius keys pressed and play sound associated to that key
+function switchStatement (key) {
 
-    document.querySelectorAll(".drum")[i].addEventListener("click", function () {
-        // get the specific button
-
-        var buttonInnerHTML = this.innerHTML;
-
-        switch (buttonInnerHTML) {
+        switch (key) {
             case 'w':
                 var audio = new Audio("sounds/crash.mp3");
                 audio.play();    
@@ -43,5 +37,23 @@ for(var i = 0; i < numOfButtons; i++){
             default:
                 break;
         }
-    });
 }
+
+// loop through every button adding event listener
+for(var i = 0; i < numOfButtons; i++){
+
+    // adding event listener for click
+    document.querySelectorAll(".drum")[i].addEventListener("click", function () {
+        // get the specific button
+        var buttonInnerHTML = this.innerHTML;
+        // call the function to play the sound depending on mouse click.
+        switchStatement(buttonInnerHTML);
+       
+    });
+   
+}
+// adding keydown event listener for keyboard press
+document.addEventListener("keydown", function (event) {
+    // call the function to play sound depending on keyboard key pressed.
+    switchStatement(event.key);
+});
