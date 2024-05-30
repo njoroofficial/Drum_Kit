@@ -48,6 +48,8 @@ for(var i = 0; i < numOfButtons; i++){
         var buttonInnerHTML = this.innerHTML;
         // call the function to play the sound depending on mouse click.
         switchStatement(buttonInnerHTML);
+        // call the function that adds animation to the button
+        addingAnimation(buttonInnerHTML);
        
     });
    
@@ -56,4 +58,18 @@ for(var i = 0; i < numOfButtons; i++){
 document.addEventListener("keydown", function (event) {
     // call the function to play sound depending on keyboard key pressed.
     switchStatement(event.key);
+    // call the function that adds animation to the button
+    addingAnimation(event.key);
 });
+
+// function to add animation to the buttons
+function addingAnimation(currentButton){
+    // get the specific button
+    var activeButton = document.querySelector("." + currentButton);
+    // add class to the button
+    activeButton.classList.add("pressed");
+    // adding timeout to remove the annimation effect
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 200);
+}
